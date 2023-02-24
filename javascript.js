@@ -1,3 +1,5 @@
+//Coded 1st
+//Generate the computer's RPS choice
 function getComputerChoice(){
     let computerChoice = Math.floor(Math.random() * 3);
     if (computerChoice === 0) return "rock";
@@ -6,11 +8,13 @@ function getComputerChoice(){
     else return "No contest";
 }
 
+//Coded 2nd
+//compare player's choice to computer's choice and declare a winner
 function playRound(playerChoice, computerChoice){
     let correctedPlayerChoice = playerChoice.toLowerCase();
     //make an array of options, compare input to options
     if (correctedPlayerChoice === computerChoice) return "Tie!"
-    
+
     if (correctedPlayerChoice === "rock" && computerChoice === "scissors"
     || correctedPlayerChoice === "paper" && computerChoice === "rock"
     || correctedPlayerChoice === "scissors" && computerChoice === "paper"){
@@ -19,7 +23,21 @@ function playRound(playerChoice, computerChoice){
     return "You lost!"
 }
 
-const playerSelection = "rock";
-const computerSelection = getComputerChoice();
+//consider making a separate helper function that turns random numbers into results
+//programmed 3rd
 
-console.log(computerSelection, playRound(playerSelection, computerSelection));
+function game (){
+    let playerWins = 0, computerWins = 0;
+    for (let i = 0; i < 5; i++){
+        let playerSelection = prompt ("rock, paper, scissors?", "rock");
+        let computerSelection = getComputerChoice();
+        let results = playRound(playerSelection, computerSelection);
+        console.log(results);
+        if (results === "You won!") playerWins++;
+        else if (results === "You lost!") computerWins++;
+    }
+    if (playerWins > computerWins) console.log("You won the match!");
+    if (computerWins > playerWins) console.log("You lost the match!");
+}
+
+game();
