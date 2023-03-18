@@ -1,4 +1,3 @@
-//Coded 1st
 //Generate the computer's RPS choice
 function getComputerChoice(){
     let computerChoice = Math.floor(Math.random() * 3);
@@ -6,6 +5,15 @@ function getComputerChoice(){
     else if (computerChoice === 1) return "paper";
     else if (computerChoice === 2) return "scissors";
     else return "No contest";
+}
+
+function getPlayerChoice(){
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          return(button.id);
+        });
+      });      
 }
 
 //Coded 2nd
@@ -40,4 +48,5 @@ function game (){
     if (computerWins > playerWins) console.log("You lost the match!");
 }
 
-game();
+getPlayerChoice();
+//game();
