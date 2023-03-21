@@ -7,46 +7,46 @@ function getComputerChoice(){
     else return "No contest";
 }
 
-function getPlayerChoice(){
+//put this in game function instead
+/*function getPlayerChoice(){
     const buttons = document.querySelectorAll('button');
     buttons.forEach((button) => {
         button.addEventListener("click", () => {
           return(button.id);
         });
       });      
-}
+}*/
 
-//Coded 2nd
 //compare player's choice to computer's choice and declare a winner
 function playRound(playerChoice, computerChoice){
-    let correctedPlayerChoice = playerChoice.toLowerCase();
+    //let correctedPlayerChoice = playerChoice.toLowerCase();
     //make an array of options, compare input to options
-    if (correctedPlayerChoice === computerChoice) return "Tie!"
-
-    if (correctedPlayerChoice === "rock" && computerChoice === "scissors"
-    || correctedPlayerChoice === "paper" && computerChoice === "rock"
-    || correctedPlayerChoice === "scissors" && computerChoice === "paper"){
-        return "You won!"
+    if (playerChoice === computerChoice) console.log("Tie!")
+    if (playerChoice === "rock" && computerChoice === "scissors"
+    || playerChoice === "paper" && computerChoice === "rock"
+    || playerChoice === "scissors" && computerChoice === "paper"){
+        console.log("You won!");
     }
-    return "You lost!"
+    console.log("You lost!");
 }
-
-//consider making a separate helper function that turns random numbers into results
-//programmed 3rd
 
 function game (){
     let playerWins = 0, computerWins = 0;
-    for (let i = 0; i < 5; i++){
-        let playerSelection = prompt ("rock, paper, scissors?", "rock");
-        let computerSelection = getComputerChoice();
-        let results = playRound(playerSelection, computerSelection);
-        console.log(results);
-        if (results === "You won!") playerWins++;
-        else if (results === "You lost!") computerWins++;
-    }
-    if (playerWins > computerWins) console.log("You won the match!");
-    if (computerWins > playerWins) console.log("You lost the match!");
-}
+    let compChoice = getComputerChoice();
+    console.log(compChoice);
+    const buttons = document.querySelectorAll("button");
+    buttons.forEach((button) => {
+        button.addEventListener("click", function(){console.log(button.id)}/*playRound(button.id, compChoice)*/); 
+        });
+};  
 
-getPlayerChoice();
-//game();
+
+
+/*    let results = playRound(playerSelection, computerSelection);
+    console.log(results);
+    if (results === "You won!") playerWins++;
+    else if (results === "You lost!") computerWins++;
+    if (playerWins > computerWins) console.log("You won the match!");
+    if (computerWins > playerWins) console.log("You lost the match!");*/
+
+game();
