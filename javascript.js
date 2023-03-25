@@ -32,13 +32,17 @@ function getComputerChoice(){
 function playRound(playerChoice){
     //make an array of options, compare input to options
     let computerChoice = getComputerChoice();
-    console.log (playerChoice + " vs. " + computerChoice);
-    if (playerChoice === computerChoice) console.log("Tie!")
+    //let matchup = document.getElementById("matchup");
+    document.getElementById("matchup").innerText = `${playerChoice} vs. ${computerChoice}`;
+    let results;
+    if (playerChoice === computerChoice) results = "Tie!";
     else if (playerChoice === "rock" && computerChoice === "scissors"
     || playerChoice === "paper" && computerChoice === "rock"
     || playerChoice === "scissors" && computerChoice === "paper"){
-        console.log("You won!");
-    } else console.log("You lost!");
+        results = "You won!";
+    } else results = "You lost!";
+    document.getElementById("results").innerText = results;
+    return results;
 }
 
 function game (){
@@ -53,7 +57,6 @@ function game (){
 
 function game1(){
     let playerWins = 0; computerWins = 0;
-    let compChoice = getComputerChoice();
     const buttons = document.querySelectorAll("button");
     buttons.forEach((button) => {
         button.addEventListener("click", function(){playRound(button.id)});
