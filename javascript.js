@@ -18,8 +18,7 @@ function getComputerChoice(){
 }*/
 
 //compare player's choice to computer's choice and declare a winner
-function playRound(playerChoice, computerChoice){
-    //let correctedPlayerChoice = playerChoice.toLowerCase();
+/*function playRound(playerChoice, computerChoice){
     //make an array of options, compare input to options
     if (playerChoice === computerChoice) console.log("Tie!")
     if (playerChoice === "rock" && computerChoice === "scissors"
@@ -28,18 +27,38 @@ function playRound(playerChoice, computerChoice){
         console.log("You won!");
     }
     console.log("You lost!");
+}*/
+
+function playRound(playerChoice){
+    //make an array of options, compare input to options
+    let computerChoice = getComputerChoice();
+    console.log (playerChoice + " vs. " + computerChoice);
+    if (playerChoice === computerChoice) console.log("Tie!")
+    else if (playerChoice === "rock" && computerChoice === "scissors"
+    || playerChoice === "paper" && computerChoice === "rock"
+    || playerChoice === "scissors" && computerChoice === "paper"){
+        console.log("You won!");
+    } else console.log("You lost!");
 }
 
 function game (){
     let playerWins = 0, computerWins = 0;
     let compChoice = getComputerChoice();
-    console.log(compChoice);
     const buttons = document.querySelectorAll("button");
+    //button works for console and alert
     buttons.forEach((button) => {
-        button.addEventListener("click", function(){console.log(button.id)}/*playRound(button.id, compChoice)*/); 
+        button.addEventListener("click", function(){alert(button.id)}/*playRound(button.id, compChoice)*/); 
         });
 };  
 
+function game1(){
+    let playerWins = 0; computerWins = 0;
+    let compChoice = getComputerChoice();
+    const buttons = document.querySelectorAll("button");
+    buttons.forEach((button) => {
+        button.addEventListener("click", function(){playRound(button.id)});
+    });
+}
 
 
 /*    let results = playRound(playerSelection, computerSelection);
@@ -49,4 +68,4 @@ function game (){
     if (playerWins > computerWins) console.log("You won the match!");
     if (computerWins > playerWins) console.log("You lost the match!");*/
 
-game();
+game1();
