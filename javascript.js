@@ -1,3 +1,5 @@
+let roundsPlayed = 0, playerWins = 0, computerWins = 0;
+
 //Generate the computer's RPS choice
 function getComputerChoice(){
     let computerChoice = Math.floor(Math.random() * 3);
@@ -7,32 +9,10 @@ function getComputerChoice(){
     else return "No contest";
 }
 
-//put this in game function instead
-/*function getPlayerChoice(){
-    const buttons = document.querySelectorAll('button');
-    buttons.forEach((button) => {
-        button.addEventListener("click", () => {
-          return(button.id);
-        });
-      });      
-}*/
-
-//compare player's choice to computer's choice and declare a winner
-/*function playRound(playerChoice, computerChoice){
-    //make an array of options, compare input to options
-    if (playerChoice === computerChoice) console.log("Tie!")
-    if (playerChoice === "rock" && computerChoice === "scissors"
-    || playerChoice === "paper" && computerChoice === "rock"
-    || playerChoice === "scissors" && computerChoice === "paper"){
-        console.log("You won!");
-    }
-    console.log("You lost!");
-}*/
-
 function playRound(playerChoice){
     //make an array of options, compare input to options
     let computerChoice = getComputerChoice();
-    //let matchup = document.getElementById("matchup");
+    roundsPlayed++;
     document.getElementById("matchup").innerText = `${playerChoice} vs. ${computerChoice}`;
     let results;
     if (playerChoice === computerChoice) results = "Tie!";
@@ -40,27 +20,32 @@ function playRound(playerChoice){
     || playerChoice === "paper" && computerChoice === "rock"
     || playerChoice === "scissors" && computerChoice === "paper"){
         results = "You won!";
-    } else results = "You lost!";
+        playerWins++;
+    } else {
+        results = "You lost!";
+        computerWins++;
+    }
     document.getElementById("results").innerText = results;
-    return results;
 }
 
-function game (){
-    let playerWins = 0, computerWins = 0;
-    let compChoice = getComputerChoice();
-    const buttons = document.querySelectorAll("button");
-    //button works for console and alert
-    buttons.forEach((button) => {
-        button.addEventListener("click", function(){alert(button.id)}/*playRound(button.id, compChoice)*/); 
-        });
-};  
-
+//TODO: fix playerWins and computerWins counter. Something's resetting it to 0 after every match
+//Per console, the counters are updating, the display either isn't updating or keeps displaying to 0
+//Try moving it back into the "play round" function? At that point the whole game app is 1 big function
+//then i could pull the global variables back into the function
 function game1(){
-    let playerWins = 0; computerWins = 0;
+    
+    let total = document.getElementById("total");
     const buttons = document.querySelectorAll("button");
     buttons.forEach((button) => {
         button.addEventListener("click", function(){playRound(button.id)});
     });
+    total.innerText = `You've won ${playerWins} times, and the computer has won ${computerWins} times!`;
+    if  (playerWins === 5) {
+        total.innerText += "\nYou won!";
+    }
+    if  (computerWins === 5){
+        total.innerText += "\nI won!";
+    }
 }
 
 
